@@ -49,11 +49,21 @@ class TextProcessingClient {
 	}
 
 	public function tag($language, $text, $output = 'tagged') {
-		return $this->makeRequest('POST', 'tag/', array(), array(
+		$response = $this->makeRequest('POST', 'tag/', array(), array(
 					'language' => $language,
 					'output' => $output,
 					'text' => $text
 		));
+		$matches = explode(' ', $response->text);
+		$model = array();
+		foreach($matches as $match){
+			list($word, $classification) = explode('/', $match);
+			$obj = new stdClass();
+			$obj->word = $word;
+			$obj->classification = $classification;
+			$model[] = $obj;
+		}
+		return $model;
 	}
 
 }

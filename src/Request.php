@@ -7,7 +7,7 @@ class Request {
 	private $_parameters;
 	private $_body;
 	private $_headers = array();
-	private $_allowedMethods = array('get', 'post', 'put', 'delete');
+	private static $_allowedMethods = array('get', 'post', 'put', 'delete');
 	private $_handle;
 
 	private function __construct($requestMethod, $url) {
@@ -22,8 +22,8 @@ class Request {
 		}
 	}
 
-	public function __callStatic($method, Array $parameters = array()) {
-		if (in_array($method, $this->_allowedMethods) && isset($parameters[0])) {
+	public static function __callStatic($method, Array $parameters = array()) {
+		if (in_array($method, self::$_allowedMethods) && isset($parameters[0])) {
 			return new self($method, $parameters[0]);
 		}
 	}

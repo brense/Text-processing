@@ -12,7 +12,6 @@ class TextProcessingClient {
 	public function makeRequest($method, $path, Array $headers = array(), Array $body = array()) {
 		$request = call_user_func(array('Request', strtolower($method)), $this->_endpoint . $path);
 		$request->addHeader('X-Mashape-Key', $this->_key);
-		$request->addHeader('Content-Type', 'application/x-www-form-urlencoded');
 		$request->addHeader('Accept', 'application/json');
 		foreach ($headers as $key => $value) {
 			$request->addHeader($key, $value);

@@ -3,7 +3,7 @@
 require_once('src/Request.php');
 require_once('src/TextProcessingClient.php');
 
-$key = '';
+$key = file_get_contents('key');
 $language = 'dutch';
 $text = 'Hallo Theuy, hoe gaat het?';
 

@@ -1,4 +1,4 @@
-<?php
+<pre><?php
 
 error_reporting(E_ALL);
 ini_set('display_errors', true);
@@ -11,6 +11,15 @@ $language = 'dutch';
 $text = 'Hallo Theuy, hoe gaat het?';
 
 $client = new TextProcessingClient($key);
-$response = $client->tag($language, $text);
 
-var_dump($response);
+$response = $client->phrases($language, $text);
+print_r($response);
+
+$response = $client->sentiment($language, $text);
+print_r($response);
+
+$response = $client->stem($language, $text);
+print_r($response);
+
+$response = $client->tag($language, $text);
+print_r($response);
